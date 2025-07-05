@@ -8,7 +8,7 @@ const {validatesignupdata} = require("./utils/validation") //importing validatio
 const User = require("./models/user")           //put values of userobject in database attributes importing
 
 //creating api for userschema input database
-app.post("/login" , async(req,res) => {
+app.post("/signup" , async(req,res) => {
     try{
 //validation of data in utils
 validatesignupdata(req);
@@ -33,6 +33,26 @@ catch(err){
 }
 })
  
+//creating login api
+app.post("/login",async(req,res) =>{
+    try{
+       const {email,password} = req.body; //extract value
+       const user = await User.findone({email:email}) //checking the user exist or not
+       if(!user) throw new Error("emailId not registered");
+
+       const ispasswordvalid = await bcrypt.compare(password, user.password)  //comparing both passwords
+
+       if(ispasswordvalid){
+        res.send("user login successful")
+       }
+       else if(!ispasswordvalid){
+        throw new Error("wrong password");
+       }
+    }
+    catch(err){
+        res.status(400).send("ERROR:" + err.message);
+    }
+})
 connectDB()
 .then(()=>{
     console.log("database connected");
