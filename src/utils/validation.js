@@ -15,3 +15,7 @@ else if(!validator.isStrongPassword(password)){
     throw new Error ("password is not strong");
 }
 };
+
+module.exports = {
+    validatesignupdata,
+};
