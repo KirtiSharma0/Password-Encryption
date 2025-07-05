@@ -10,7 +10,7 @@ const User = require("./models/user")
 
 //creating api for userschema input database
 app.post("/signup" , async(req,res) => {
-//validation of data
+//validation of data in utils
 
 //encrypt password
 
