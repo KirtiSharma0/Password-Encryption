@@ -38,7 +38,7 @@ app.post("/login",async(req,res) =>{
     try{
        const {email,password} = req.body; //extract value
        const user = await User.findone({email:email}) //checking the user exist or not
-       if(!user) throw new Error("emailId not registered");
+       if(!user) throw new Error("EmailId not registered");
 
        const ispasswordvalid = await bcrypt.compare(password, user.password)  //comparing both passwords
 
