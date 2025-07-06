@@ -46,7 +46,7 @@ app.post("/login",async(req,res) =>{
         res.send("user login successful")
        }
        else if(!ispasswordvalid){
-        throw new Error("wrong password");
+        throw new Error("Wrong password");
        }
     }
     catch(err){
