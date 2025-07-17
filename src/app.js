@@ -11,9 +11,9 @@ const User = require("./models/user")           //put values of userobject in da
 app.post("/signup" , async(req,res) => {
     try{
 //validation of data in utils
-validatesignupdata(req);
+// validatesignupdata(req);
 const {firstName,lastName,email,password} = req.body;  //calling from user
-
+console.log(firstName)
 //encrypt password
 const passwordHash = bcrypt.hash(password,10);
 console.log(passwordHash);
@@ -26,7 +26,7 @@ console.log(passwordHash);
      password:passwordHash,   //passing fields
  });
 await user.save();
-res.send("user added succefully");
+res.send(user);
     }
 catch(err){
     res.status(400).send("ERROR:" + err.message);
